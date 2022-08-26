@@ -1,7 +1,7 @@
 import Reactt from 'react'
-import { unmountComponentAtNode, render } from 'react-dom'
-import {render as lrender, screen, fireEvent } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+// import { unmountComponentAtNode, render } from 'react-dom'
+// import { act } from 'react-dom/test-utils'
+import {render, screen, fireEvent } from '@testing-library/react'
 
 import Toggle from '../component/Toggle'
 
@@ -27,7 +27,7 @@ it('changes value when clicked', () => {
     //     render(<Toggle onChange={onChange} />, container)
     // })
 
-    lrender(<Toggle onChange={onChange} />)
+    render(<Toggle onChange={onChange} />)
 
     // get a hold of the button element, and trigger some clicks on it 
     // const button  = document.querySelector('[data-testid=toggle]')

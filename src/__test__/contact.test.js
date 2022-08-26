@@ -1,6 +1,7 @@
 import React from "react"
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+// import { render, unmountComponentAtNode } from 'react-dom'
+// import { act } from 'react-dom/test-utils'
+import {screen, act, render } from '@testing-library/react'
 
 import Contact from '../component/Contact'
 import MockedMap from '../component/Map'
@@ -15,46 +16,56 @@ jest.mock('../component/Map', () => {
     }
 })
 
-let container = null
+// let container = null
 
-beforeEach(() => {
-    container = document.createElement('div')
-    document.body.appendChild(container)
-})
+// beforeEach(() => {
+//     container = document.createElement('div')
+//     document.body.appendChild(container)
+// })
 
 
-afterEach(() => {
-    unmountComponentAtNode(container)
-    container.remove()
-    container = null
-})
+// afterEach(() => {
+//     unmountComponentAtNode(container)
+//     container.remove()
+//     container = null
+// })
 
 
 
 it('should render contact information', () => {
     const center = { lat: 0, long: 0 }
-    act(() => {
-        render(
-            <Contact
-                name='Joni Baez'
-                email="test@example.com"
-                site="http://test.com"
-                center={center}
-            />,
-            container
+    // act(() => {
+    //     render(
+    //         <Contact
+    //             name='Joni Baez'
+    //             email="test@example.com"
+    //             site="http://test.com"
+    //             center={center}
+    //         />,
+    //         container
 
-        )
-    })
+    //     )
+    // })
+
+
+    render(
+        <Contact
+            name='Joni Baez'
+            email="test@example.com"
+            site="http://test.com"
+            center={center}
+        />
+    )
 
     expect(
-        container.querySelector("[data-testid='email']").getAttribute("href")
+        screen.getByTestId("email").getAttribute("href")
       ).toEqual("mailto:test@example.com")
     
       expect(
-        container.querySelector('[data-testid="site"]').getAttribute("href")
+        screen.getByTestId('site').getAttribute("href")
       ).toEqual("http://test.com")
     
-      expect(container.querySelector('[data-testid="map"]').textContent).toEqual(
+      expect(screen.getByTestId('map').textContent).toEqual(
         "0:0"
       )
 })
