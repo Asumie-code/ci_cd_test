@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event"
 
 
 
-import Card from "../component/card"
+import Card from "../component/Card"
 
 
 
