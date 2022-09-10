@@ -2,6 +2,7 @@ import Reactt from 'react'
 // import { unmountComponentAtNode, render } from 'react-dom'
 // import { act } from 'react-dom/test-utils'
 import {render, screen, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import Toggle from '../component/Toggle'
 
@@ -38,7 +39,8 @@ it('changes value when clicked', () => {
     // act(() => {
     //     button.dispatchEvent(new MouseEvent('click', {bubbles: true}))
     // })
-    fireEvent(button, new MouseEvent('click', {bubbles: true}))
+    // fireEvent(button, new MouseEvent('click', {bubbles: true}))
+    userEvent.click(button)
 
     expect(onChange).toHaveBeenCalledTimes(1); 
     expect(button.innerHTML).toBe('Turn off')

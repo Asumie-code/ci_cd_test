@@ -2,6 +2,7 @@ import React from "react"
 // import { render, unmountComponentAtNode } from "react-dom"
 // import { act } from "react-dom/test-utils"
 import { fireEvent ,act ,screen ,render } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 
 
@@ -15,6 +16,7 @@ beforeEach(() => {
     // container = document.createElement('div')
     // document.body.appendChild(container)
     jest.useFakeTimers()
+    
 })
 
 
@@ -78,8 +80,11 @@ it('should cleanup on bien removed', () => {
 })
 
 
-it('should accept selections', () => {
+it('should accept selections', async() => {
+    
     const onSelect = jest.fn()
+    // setup user event for user-event version 14 
+
     // act(()  => {
     //     render(<Card onSelect={onSelect} />, container)
     // })
@@ -93,7 +98,11 @@ it('should accept selections', () => {
     // })
 
     const card = screen.getByTestId('2')
-    fireEvent.click(card, {bubbles: true})
+    // fireEvent.click(card, {bubbles: true})
+
+    // click using user event 
+     userEvent.click(card)
+
 
 
     expect(onSelect).toHaveBeenCalledWith(2)
