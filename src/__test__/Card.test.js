@@ -105,7 +105,7 @@ it('should accept selections', async() => {
 
 
 
-    expect(onSelect).toHaveBeenCalledWith(2)
+    expect(onSelect).toHaveBeenCalledWith(3)
 })
 
 
